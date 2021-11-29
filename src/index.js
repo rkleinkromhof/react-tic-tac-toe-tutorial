@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { string, array, func } from 'prop-types';
 import './index.css';
 
 function Square(props) {
@@ -148,4 +149,24 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+Square.defaultProps = {
+  value: null,
+  onClick: func
+}
+
+Square.propTypes =  {
+  value: string,
+  onClick: func
+}
+
+Board.defaultProps = {
+  squares: [],
+  onClick: func
+}
+
+Board.propTypes = {
+  squares: array,
+  onClick: func
 }
