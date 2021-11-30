@@ -53,6 +53,7 @@ class Game extends React.Component {
             }],
             stepNumber: 0,
             xIsNext: true,
+            sortMovesDescending: false
         };
     }
 
@@ -76,6 +77,12 @@ class Game extends React.Component {
                 xIsNext: !this.state.xIsNext,
             });
         }
+    }
+
+    toggleSortMoves() {
+        this.setState({
+            sortMovesDescending: !this.state.sortMovesDescending
+        });
     }
 
     jumpTo(step) {
@@ -103,6 +110,10 @@ class Game extends React.Component {
             );
         });
 
+        if (this.state.sortMovesDescending) {
+            moves.reverse();
+        }
+
         let status;
 
         if (winner) {
@@ -121,7 +132,9 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
-                    <ol>{moves}</ol>
+                    <ol reversed={this.state.sortMovesDescending}>{moves}</ol>
+                    <input id="sort-moves-checkbox" type="checkbox" name="sort-moves" onClick={() => {this.toggleSortMoves()}} />
+                    <label htmlFor="sort-moves-checkbox">Sort moves in descending order</label>
                 </div>
             </div>
         );
