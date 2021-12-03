@@ -120,6 +120,8 @@ class Game extends React.Component {
         if (winningSquares) {
             // Determine the winner from the first square of the winning squares.
             status = `Winner ${current.squares[winningSquares[0]]}`;
+        } else if (history.length === 10) {
+            status = `The game is a Draw`;
         } else {
             status = `Next player: ${this.state.xIsNext ? 'X' : 'O'}`;
         }
